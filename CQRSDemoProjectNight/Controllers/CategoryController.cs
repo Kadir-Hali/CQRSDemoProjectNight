@@ -43,14 +43,21 @@ namespace CQRSDemoProjectNight.Controllers
 
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            await _removeCategoryCommandHandler.Handle(new RemoveCategoryCommand (id));
+            await _removeCategoryCommandHandler.Handle(new RemoveCategoryCommand(id));
             return RedirectToAction("CategoryList");
         }
-        
+
         public async Task<IActionResult> UpdateCategory(int id)
         {
             var value = await _getCategoryByIdQueryHandler.Handle(new GetCategoryByIdQuery(id));
             return View(value);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryCommand command)
+        {
+            await _updateCategoryCommandHandler.Handle(command);
+            return RedirectToAction("CategoryList");
         }
     }
 }
