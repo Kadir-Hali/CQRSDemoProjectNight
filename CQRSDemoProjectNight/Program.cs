@@ -1,5 +1,6 @@
 using CQRSDemoProjectNight.Context;
 using CQRSDemoProjectNight.CQRSPattern.Handlers.CategoryHandlers;
+using CQRSDemoProjectNight.CQRSPattern.Handlers.CustomerHandlers;
 using CQRSDemoProjectNight.CQRSPattern.Handlers.ProductHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,12 @@ builder.Services.AddScoped<GetProductByIdQueryHandler>();
 builder.Services.AddScoped<CreateProductCommandHandler>();
 builder.Services.AddScoped<RemoveProductCommandHandler>();
 builder.Services.AddScoped<UpdateProductCommandHandler>();
+
+builder.Services.AddScoped<GetCustomerQueryHandler>();
+builder.Services.AddScoped<GetCustomerByIdQueryHandler>();
+builder.Services.AddScoped<CreateCustomerCommandHandler>();
+builder.Services.AddScoped<UpdateCustomerCommandHandler>();
+builder.Services.AddScoped<RemoveCustomerCommandHandler>();
 
 builder.Services.AddControllersWithViews();
 
